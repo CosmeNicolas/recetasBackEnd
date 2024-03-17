@@ -17,9 +17,10 @@ app.use(morgan('dev'))
 //faltan middleware json
 
 
+
 //3- configurar las rutas 
 //http://localhost:3000/productos
-app.get('/',(req, res)=>{
+/* app.get('/',(req, res)=>{
     console.log('procesando una solicitud get')
     res.send('respuesta funcionando ')
-})
+}) */
