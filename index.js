@@ -4,7 +4,8 @@ import cors from 'cors'
 import morgan from 'morgan';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { listarRecetas } from './src/controllers/recetas.controllers.js';
+import recetasRouter from './src/routes/recetas.routes.js'
+import './src/database/database.js'
 //1- configurar un puerto (express)
 
 const app = express();
@@ -29,7 +30,7 @@ app.use(express.static(path.join(__dirname,'/public')))
 
 //3- configurar las rutas 
 //http://localhost:3000/productos
-app.use('/api', listarRecetas)
+app.use('/api', recetasRouter)
 
 /* app.get('/',(req, res)=>{
     console.log('procesando una solicitud get')
