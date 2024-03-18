@@ -59,3 +59,7 @@ const recetaSchema = new Schema({
         maxLength:1000,
     }
 })
+
+const Receta = mongoose.model('receta', recetaSchema)
+
+export default Receta
