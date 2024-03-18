@@ -2,6 +2,9 @@ import express from 'express'
 import 'dotenv/config'
 import cors from 'cors'
 import morgan from 'morgan';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import { listarRecetas } from './src/controllers/recetas.controllers.js';
 //1- configurar un puerto (express)
 
 const app = express();
@@ -15,11 +18,19 @@ app.use(cors())
 //config morgan, nos da info extra en la terminal
 app.use(morgan('dev'))
 //faltan middleware json
-
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+const __filename = fileURLToPath(import.meta.url)
+console.log(__filename)
+const __dirname = path.dirname(dirname(__filename))
+console.log(__dirname)
+app.use(express.static(path.join(__dirname,'/public')))
 
 
 //3- configurar las rutas 
 //http://localhost:3000/productos
+app.use('/api', listarRecetas)
+
 /* app.get('/',(req, res)=>{
     console.log('procesando una solicitud get')
     res.send('respuesta funcionando ')
