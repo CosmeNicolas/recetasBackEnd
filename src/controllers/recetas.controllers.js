@@ -6,7 +6,7 @@ export const listarRecetas = async(req, res)=>{
         res.status(200).json(recetas)
     } catch (error) {
         console.log(error)
-        res.status(500).json({mensaje: 'Erorr al bsucar el producto'})
+        res.status(500).json({mensaje: 'Erorr al buscar la receta'})
     }
 }
 
