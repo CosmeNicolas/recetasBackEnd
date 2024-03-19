@@ -57,3 +57,17 @@ export const editarReceta = async(req, res)=>{
         res.status(500).json({mensaje: 'Error interno en la solicitud, no se edito el producto'})
     }
 }
+
+export const borrarReceta = async(req, res)=>{
+    try {
+         const recetaBuscada = await Receta.findById(req.params.id)
+         if(!recetaBuscada){
+            return res.status(404).json({mensaje: 'No se borró la receta'})
+         }
+        await Receta.findByIdAndDelete(req.params.id)
+        res.status(200).json({mensaje: 'Receta borrada con exito!'})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({mensaje: 'Error interno en la solicitud, no se edito el producto'})
+    }
+}
