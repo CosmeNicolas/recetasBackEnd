@@ -24,15 +24,11 @@ export const crearReceta = async(req, res)=>{
 
 export const obtenerReceta = async(req, res)=>{
     try {
-        //extraer id 
         console.log(req.params.id)
-        //solicitar a la bd ese id
         const recetaBuscada = await Receta.findById(req.params.id)
-        //preguntar si no encontre el producto buscado
         if(!recetaBuscada){
             return res.status(404).json({mensaje: 'No se encontro la receta con el id enviado'})
         }
-        //enviar respuesta
         res.status(200).json(recetaBuscada)
     } catch (error) {
         console.log(error)
@@ -42,15 +38,11 @@ export const obtenerReceta = async(req, res)=>{
 
 export const editarReceta = async(req, res)=>{
     try {
-        //verificar si existe la receta
          const recetaBuscada = await Receta.findById(req.params.id)
          if(!recetaBuscada){
-             //responder si es correcto
             return res.status(404).json({mensaje: 'No se Encontro la receta a editar'})
          }
-        //si el producto existe y sus datos son validados correctamente, actualizamos
         await Receta.findByIdAndUpdate(req.params.id, req.body)
-        //responder al usuario 
         res.status(200).json({mensaje: 'Receta editada con exito!'})
     } catch (error) {
         console.log(error)
